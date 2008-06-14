@@ -8,7 +8,7 @@ arch=(i686 x86_64)
 url='http://fatrat.dolezel.info/'
 license=('GPL')
 makedepends=('cmake')
-depends=('fatrat-svn>=211')
+depends=('fatrat-svn>=254')
 provides=('fatrat-opensubtitles')
 conflicts=('fatrat-opensubtitles')
 groups=('fatrat-plugins-svn')
