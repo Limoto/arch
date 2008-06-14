@@ -1,0 +1,42 @@
+# Contributor: Jakub Luzny <limoto94@gmail.com>
+
+pkgname=fatrat-opensubtitles-svn
+pkgver=255
+pkgrel=1
+pkgdesc='FatRat plugin for downloading subtitles from OpenSubtitles.com (by movie hash)'
+arch=(i686 x86_64)
+url='http://fatrat.dolezel.info/'
+license=('GPL')
+makedepends=('cmake')
+depends=('fatrat-svn>=211')
+provides=('fatrat-opensubtitles')
+conflicts=('fatrat-opensubtitles')
+groups=('fatrat-plugins-svn')
+source=()
+md5sums=()
+
+_svntrunk='svn://svn.dolezel.info/fatrat/trunk/fr_opensubtitles'
+_svnmod='fr_opensubtitles'
+
+build() {
+  cd "$srcdir"
+
+  svn co "$_svntrunk" "$_svnmod" -r "$pkgver"
+
+  msg 'SVN checkout done or server timeout'
+  msg 'Starting make...'
+
+  if [ -d "$_svnmod-build" ]; then
+    rm -rf "$_svnmod-build"
+  fi
+
+  cp -r "$_svnmod" "$_svnmod-build"
+
+  cd "$_svnmod-build/"
+
+  cmake . -DCMAKE_INSTALL_PREFIX='/usr'
+  make || return 1
+  make DESTDIR="$pkgdir" install
+}
+
+# vim:set ts=2 sw=2 et:
