@@ -1,0 +1,37 @@
+# Contributor: Jakub Luzny <limoto94@gmail.com>
+pkgname=zero-ballistics
+pkgver=1.10_beta
+pkgrel=1
+_tarballname=zb_beta_v11
+pkgdesc='A unique blend of multiplayer first person shooter and tank combat game'
+arch=('i686')
+url='http://www.quanticode.com/zeroballistics/'
+license=('unknown')
+depends=('libgl')
+source=("$_tarballname.tar.bz2"
+'http://www.quanticode.com/zeroballistics/public/readme.html'
+'launcher.sh')
+md5sums=('9de2881198329677fb66d26d95d689d3'
+         'c7c8a8f818e88dd6e838b5b920585a6b'
+         'ce4c1ae50295b25bdebf0744b0935df2')
+
+build() {
+  cd "$srcdir/$_tarballname"
+
+  mkdir -p "$pkgdir/opt/$pkgname/"
+  cp -a 'config_client.xml' \
+  'config_common.xml'\
+  'config_server.xml'\
+  'data'\
+  'screenshots'\
+  'shared_libs'\
+  "$pkgdir/opt/$pkgname"
+
+  install -Dm 775 'tank.x86' "$pkgdir/opt/$pkgname"
+
+  cd "$srcdir"
+  install -Dm 775 'launcher.sh' "$pkgdir/usr/bin/zero-ballistics"
+  install -Dm 644 'readme.html' "$pkgdir/usr/share/doc/zero-ballistics/README.html"
+}
+
+# vim:set ts=2 sw=2 et:

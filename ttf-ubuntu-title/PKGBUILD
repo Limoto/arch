@@ -1,0 +1,24 @@
+# Contributor: Jakub Luzny <limoto94@gmail.com>
+pkgname=ttf-ubuntu-title
+pkgver=0706252006
+pkgrel=1
+pkgdesc="Fonts used in Ubuntu logo"
+arch=(i686 x86_64)
+url="https://wiki.ubuntu.com/UbuntuTitle"
+license=('GPL')
+depends=('fontconfig' 'xorg-fonts-encodings' 'xorg-font-utils')
+install=ttf.install
+source=(http://nitrofurano.linuxkafe.com/linux/UbuntuTitle_0706252006.zip)
+md5sums=('a7de79a798bc2939d4f242c00f0355c2')
+
+build() {
+  cd "$startdir/src/"
+  
+  mkdir -p $startdir/pkg/usr/share/fonts/TTF
+  mkdir -p $startdir/pkg/usr/share/${pkgname}
+
+  install -m644 notes.txt $startdir/pkg/usr/share/${pkgname}
+  install -m644 ttf/*.ttf $startdir/pkg/usr/share/fonts/TTF/
+}
+
+# vim:set ts=2 sw=2 et:

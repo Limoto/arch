@@ -1,0 +1,25 @@
+# Contributor: Jakub Lužný <limoto94@gmail.com>
+pkgname=sl
+pkgver=3.03
+pkgrel=1
+pkgdesc='SL (Steam Locomotive) runs across your terminal when you type "sl" as you meant to type "ls".'
+arch=(i686 x86_64)
+url="http://www.tkl.iis.u-tokyo.ac.jp/~toyoda/index_e.html"
+license=('unknown')
+depends=('termcap-compat' 'ncurses')
+makedepends=('termcap-compat' 'ncurses')
+provides=()
+source=(http://www.tkl.iis.u-tokyo.ac.jp/~toyoda/sl/sl.tar)
+md5sums=() #generate with 'makepkg -g'
+
+build() {
+	cd "$startdir/src/sl"
+
+	make
+
+	mkdir -p $startdir/pkg/usr/bin/
+	install -Dm 775 sl $startdir/pkg/usr/bin/
+
+}
+
+# vim:set ts=2 sw=2 et:

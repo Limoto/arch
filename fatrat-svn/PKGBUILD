@@ -1,0 +1,43 @@
+# Contributor: Jakub Luzny <limoto94@gmail.com>
+
+pkgname=fatrat-svn
+pkgver=250
+pkgrel=1
+pkgdesc='Qt4 (C++) based download manager with support for HTTP, FTP, SFTP, BitTorrent, rapidshare and more'
+arch=(i686 x86_64)
+url='http://fatrat.dolezel.info/'
+license=('GPL')
+makedepends=('cmake>=2.6.0')
+depends=('qt>=4.4.0' 'rb_libtorrent>=0.13' 'libssh2' 'gloox')
+provides=('fatrat')
+conflicts=('fatrat')
+source=()
+md5sums=()
+install=fatrat.install
+
+_svntrunk='svn://svn.dolezel.info/fatrat/trunk/fatrat'
+_svnmod='fatrat'
+
+build() {
+  cd "$srcdir"
+
+  svn co "$_svntrunk" "$_svnmod" -r "$pkgver"
+
+  msg 'SVN checkout done or server timeout'
+  msg 'Starting make...'
+
+  if [ -d "$_svnmod-build" ]; then
+    rm -rf "$_svnmod-build"
+  fi
+
+  cp -r "$_svnmod" "$_svnmod-build"
+
+  cd "$_svnmod-build/"
+
+  cmake . -DCMAKE_INSTALL_PREFIX='/usr' -DWITH_BITTORRENT=ON -DWITH_SFTP=ON -DWITH_NLS=ON -DWITH_JABBER=ON -DWITH_DOCUMENTATION=ON -DWITH_WEBINTERFACE=ON
+  make || return 1
+  make DESTDIR="$pkgdir" install 
+
+}
+
+# vim:set ts=2 sw=2 et:
