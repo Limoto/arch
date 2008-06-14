@@ -1,0 +1,39 @@
+# Contributor: Jakub Luzny <limoto94@gmail.com>
+pkgname=wolman-svn
+pkgver=2
+pkgrel=1
+pkgdesc='Qt4-based Wake-on-LAN manager'
+arch=(i686 x86_64)
+url='ttp://www.dolezel.info/projects/wolman'
+license=('GPL')
+depends=('qt>=4.3.0' 'libpcap' 'libnet' 'iproute')
+makedepends=('svn')
+provides=('wolman')
+conflicts=('wolman')
+source=()
+md5sums=()
+
+_svntrunk='svn://svn.dolezel.info/wolman/trunk/wolman'
+_svnmod='wolman'
+
+build() {
+  cd "$srcdir"
+
+  if [ -d "$_svnmod/.svn" ]; then
+    (cd "$_svnmod" && svn up -r "$pkgver")
+  else
+    svn co "$_svntrunk" --config-dir ./ -r "$pkgver" "$_svnmod"
+  fi
+
+  msg "SVN checkout done or server timeout"
+  msg "Starting make..."
+
+  rm -r "$srcdir/$_svnmod-build"
+  cp -r "$_svnmod" "$_svnmod-build"
+  cd "$_svnmod-build"
+
+
+  qmake
+  make || return 1
+  install -Dm 775 wolman "$pkgdir/usr/bin/wolman"
+}
