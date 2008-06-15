@@ -16,3 +16,5 @@ build() {
   install -Dm 755 ghamachi $startdir/pkg/usr/bin/ghamachi
   install -Dm 644 README $startdir/pkg/usr/share/ghamachi/README
 }
+
+#category: network

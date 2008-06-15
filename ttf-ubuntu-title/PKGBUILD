@@ -21,4 +21,5 @@ build() {
   install -m644 ttf/*.ttf $startdir/pkg/usr/share/fonts/TTF/
 }
 
+#category: x11
 # vim:set ts=2 sw=2 et:

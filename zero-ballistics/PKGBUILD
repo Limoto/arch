@@ -34,4 +34,5 @@ build() {
   install -Dm 644 'readme.html' "$pkgdir/usr/share/doc/zero-ballistics/README.html"
 }
 
+#category: games
 # vim:set ts=2 sw=2 et:

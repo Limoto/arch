@@ -39,4 +39,5 @@ build() {
   make DESTDIR="$pkgdir" install
 }
 
+#category: network
 # vim:set ts=2 sw=2 et:

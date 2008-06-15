@@ -34,4 +34,5 @@ build() {
   install -Dm 755 wuninst.exe.so $startdir/pkg/usr/lib/wine/wuninst.exe.so
 }
 
+#category: system
 # vim:set ts=2 sw=2 et:

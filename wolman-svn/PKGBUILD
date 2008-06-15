@@ -37,3 +37,5 @@ build() {
   make || return 1
   install -Dm 775 wolman "$pkgdir/usr/bin/wolman"
 }
+
+#category: network
