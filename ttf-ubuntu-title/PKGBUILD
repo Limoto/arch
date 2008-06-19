@@ -1,7 +1,7 @@
 # Contributor: Jakub Luzny <limoto94@gmail.com>
 pkgname=ttf-ubuntu-title
 pkgver=0706252006
-pkgrel=1
+pkgrel=2
 pkgdesc="Fonts used in Ubuntu logo"
 arch=(i686 x86_64)
 url="https://wiki.ubuntu.com/UbuntuTitle"
@@ -12,13 +12,13 @@ source=(http://nitrofurano.linuxkafe.com/linux/UbuntuTitle_0706252006.zip)
 md5sums=('a7de79a798bc2939d4f242c00f0355c2')
 
 build() {
-  cd "$startdir/src/"
+  cd "$srcdir"
   
-  mkdir -p $startdir/pkg/usr/share/fonts/TTF
-  mkdir -p $startdir/pkg/usr/share/${pkgname}
+  mkdir -p "$pkgdir/usr/share/fonts/TTF"
+  mkdir -p "$pkgdir/usr/share/$pkgname"
 
-  install -m644 notes.txt $startdir/pkg/usr/share/${pkgname}
-  install -m644 ttf/*.ttf $startdir/pkg/usr/share/fonts/TTF/
+  install -m644 notes.txt "$pkgdir/usr/share/$pkgname"
+  install -m644 ttf/*.ttf "$pkgdir/usr/share/fonts/TTF/"
 }
 
 #category: x11
