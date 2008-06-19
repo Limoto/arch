@@ -1,20 +1,21 @@
-#Contributor: Jakub Lu?n� <Limoto94@gmail.com>
+#Contributor: Jakub Luzny <Limoto94@gmail.com>
 
 pkgname=ghamachi
-pkgver=0.7.2
-pkgrel=2
+pkgver=0.8.1
+pkgrel=1
 pkgdesc="GTK2 frontend to Hamachi"
 url="http://www.penguinbyte.com/software/ghamachi/"
 depends=('hamachi' 'gtk2')
-source=("http://www.penguinbyte.com/software/ghamachi/download/2/gHamachi_gtk2.tar.gz")
+source=("http://www.penguinbyte.com/apps/pbwebstor/files/3/projects/hamachi/v.0.8.1/gHamachi_0.8.1.tar.gz")
 md5sums=('cdac6da5686a7fcf533ecbccbaae8072')
 arch=(i686)
 license=('unknown')
 
 build() {
-  cd $startdir/src/
-  install -Dm 755 ghamachi $startdir/pkg/usr/bin/ghamachi
-  install -Dm 644 README $startdir/pkg/usr/share/ghamachi/README
+  cd "$srcdir"
+  install -Dm 755 ghamachi "$pkgdir/usr/bin/ghamachi"
+  install -Dm 644 README "$pkgdir/usr/share/ghamachi/README"
 }
 
 #category: network
+# vim:set ts=2 sw=2 et:
