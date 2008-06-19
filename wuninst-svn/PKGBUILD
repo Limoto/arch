@@ -1,7 +1,7 @@
 # Contributor: Jakub Luzny <limoto94@gmail.com>
 pkgname=wuninst-svn
 pkgver=3
-pkgrel=1
+pkgrel=2
 pkgdesc="Advanced uninstaller for Wine"
 arch=(i686 x86_64)
 url="http://www.dolezel.info/projekty/wuninst/"
@@ -15,7 +15,7 @@ _svntrunk="svn://svn.dolezel.info/wuninst/trunk/wuninst/"
 _svnmod="wuninst"
 
 build() {
-  cd $startdir/src/
+  cd "$srcdir"
 
   svn co $_svntrunk $_svnmod -r $pkgver
 
@@ -31,7 +31,7 @@ build() {
   cd $_svnmod-build/
 
   make
-  install -Dm 755 wuninst.exe.so $startdir/pkg/usr/lib/wine/wuninst.exe.so
+  install -Dm 755 wuninst.exe.so "$pkgdir/usr/lib/wine/wuninst.exe.so"
 }
 
 #category: system
