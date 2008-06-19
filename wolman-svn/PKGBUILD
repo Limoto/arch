@@ -1,7 +1,7 @@
 # Contributor: Jakub Luzny <limoto94@gmail.com>
 pkgname=wolman-svn
 pkgver=2
-pkgrel=1
+pkgrel=2
 pkgdesc='Qt4-based Wake-on-LAN manager'
 arch=(i686 x86_64)
 url='ttp://www.dolezel.info/projects/wolman'
@@ -39,3 +39,4 @@ build() {
 }
 
 #category: network
+# vim:set ts=2 sw=2 et:
