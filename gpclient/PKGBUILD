@@ -2,7 +2,7 @@
 pkgname=gpclient
 pkgver=1.0_alpha5
 pkgver_orig=1.0-alpha5
-pkgrel=1
+pkgrel=2
 pkgdesc='Unofficial client for GamePark.cz server'
 arch=(i686 x86_64)
 url="http://gpclient.dolezel.info/"
@@ -14,13 +14,13 @@ source=(http://www.dolezel.info/download/data/${pkgname}/${pkgname}-${pkgver_ori
 md5sums=('489f928b6767fe763dab7e6a9eb9e0d3')
 
 build() {
-	cd "$startdir/src/${pkgname}-${pkgver_orig}/"
+	cd "$srcdir/${pkgname}-${pkgver_orig}/"
 
 	qmake
 	make
 
-	mkdir -p $startdir/pkg/usr/bin/
-	install -Dm 775 gpclient $startdir/pkg/usr/bin/
+	mkdir -p "$pkgdir/usr/bin/"
+	install -Dm 775 gpclient "$pkgdir/usr/bin/"
 }
 
 #category: games
