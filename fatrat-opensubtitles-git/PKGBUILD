@@ -1,0 +1,45 @@
+# Contributor: Jakub Luzny <limoto94@gmail.com>
+
+pkgname=fatrat-opensubtitles-git
+pkgver=20080630
+pkgrel=1
+pkgdesc='FatRat plugin for downloading subtitles from OpenSubtitles.com (by movie hash)'
+arch=(i686 x86_64)
+url='http://fatrat.dolezel.info/'
+license=('GPL')
+makedepends=('cmake')
+depends=('fatrat-git>20080613')
+provides=('fatrat-opensubtitles')
+conflicts=('fatrat-opensubtitles' 'fatrat-opensubtitles-svn')
+groups=('fatrat-plugins-git')
+replaces=('fatrat-opensubtitles-svn')
+source=()
+md5sums=()
+
+_gitroot="git://dolezel.info/fr_opensubtitles.git"
+_gitname="fr_opensubtitles"
+build() {
+  cd "$srcdir"
+  msg "Connecting to GIT server...."
+
+  if [ -d "$srcdir/$_gitname" ] ; then
+    cd $_gitname && git-pull origin
+    msg "The local files are updated."
+  else
+    git clone $_gitroot
+  fi
+
+  msg "GIT checkout done or server timeout"
+  msg "Starting make..."
+
+  rm -r "$srcdir/$_gitname-build"
+  cp -r "$srcdir/$_gitname" "$startdir/src/$_gitname-build"
+  cd "$srcdir/$_gitname-build"
+
+  cmake . -DCMAKE_INSTALL_PREFIX='/usr'
+  make || return 1
+  make DESTDIR="$pkgdir" install
+}
+
+#category: network
+# vim:set ts=2 sw=2 et:
