@@ -1,7 +1,7 @@
 # Contributor: Jakub Luzny <limoto94@gmail.com>
 pkgname=sl
 pkgver=3.03
-pkgrel=2
+pkgrel=3
 pkgdesc='SL (Steam Locomotive) runs across your terminal when you type "sl" as you meant to type "ls".'
 arch=(i686 x86_64)
 url="http://www.tkl.iis.u-tokyo.ac.jp/~toyoda/index_e.html"
@@ -12,13 +12,13 @@ source=(http://www.tkl.iis.u-tokyo.ac.jp/~toyoda/sl/sl.tar)
 md5sums=('cc06b159f78f86bfd2d4e0e16330fbae')
 
 build() {
-	cd "$srcdir"
+	cd "$srcdir/sl"
 
-	make
+	cc $CFLAGS -o sl sl.c -lcurses -ltermcap
+	gzip -9 -f sl.1
 
-	mkdir -p "$pkgdir/usr/bin/"
-	install -Dm 775 sl "$pkgdir/usr/bin/"
-
+	install -Dm 775 sl "$pkgdir/usr/bin/sl"
+	install -Dm 644 sl.1.gz "$pkgdir/usr/share/man/man1/sl.1.gz"
 }
 
 #category: games
