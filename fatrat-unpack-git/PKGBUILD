@@ -1,0 +1,44 @@
+# Contributor: Jakub Luzny <limoto94@gmail.com>
+
+pkgname=fatrat-unpack-git
+pkgver=20080711
+pkgrel=1
+pkgdesc='FatRat plugin for archive unkpacking (only RAR fow now)'
+arch=(i686 x86_64)
+url='http://fatrat.dolezel.info/'
+license=('GPL')
+makedepends=('cmake=>2.4.0')
+depends=('fatrat-git>20080507')
+provides=('fatrat-unpack')
+conflicts=('fatrat-unpack')
+groups=('fatrat-plugins-git')
+source=()
+md5sums=()
+
+_gitroot="git://dolezel.info/fr_unpack.git"
+_gitname="fr_unpack"
+build() {
+  cd "$srcdir"
+  msg "Connecting to GIT server...."
+
+  if [ -d "$srcdir/$_gitname" ] ; then
+    cd $_gitname && git-pull origin
+    msg "The local files are updated."
+  else
+    git clone $_gitroot
+  fi
+
+  msg "GIT checkout done or server timeout"
+  msg "Starting make..."
+
+  rm -r "$srcdir/$_gitname-build"
+  cp -r "$srcdir/$_gitname" "$startdir/src/$_gitname-build"
+  cd "$srcdir/$_gitname-build"
+
+  cmake . -DCMAKE_INSTALL_PREFIX='/usr'
+  make || return 1
+  make DESTDIR="$pkgdir" install
+}
+
+#category: network
+# vim:set ts=2 sw=2 et:
