@@ -2,12 +2,12 @@
 
 pkgname=fatrat-unpack-git
 pkgver=20080711
-pkgrel=1
+pkgrel=2
 pkgdesc='FatRat plugin for archive unkpacking (only RAR fow now)'
 arch=(i686 x86_64)
 url='http://fatrat.dolezel.info/'
 license=('GPL')
-makedepends=('cmake=>2.4.0')
+makedepends=('cmake>=2.4.0')
 depends=('fatrat-git>20080507')
 provides=('fatrat-unpack')
 conflicts=('fatrat-unpack')
