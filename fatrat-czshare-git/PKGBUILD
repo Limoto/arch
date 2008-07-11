@@ -1,14 +1,14 @@
 # Contributor: Jakub Luzny <limoto94@gmail.com>
 
 pkgname=fatrat-czshare-git
-pkgver=20080630
+pkgver=20080711
 pkgrel=1
 pkgdesc='FatRat plugin for downloading and uploading on CZshare.com'
 arch=(i686 x86_64)
 url='http://fatrat.dolezel.info/'
 license=('GPL')
 makedepends=('cmake')
-depends=('fatrat-git>20080507')
+depends=('fatrat-git>20080623')
 provides=('fatrat-czshare')
 conflicts=('fatrat-czshare' 'fatrat-czshare-svn')
 groups=('fatrat-plugins-git')
