@@ -2,18 +2,18 @@
 
 pkgname=fatrat-git
 pkgver=20080724
-pkgrel=1
+pkgrel=2
 pkgdesc='Qt4 (C++) based download manager with support for HTTP, FTP, SFTP, BitTorrent, rapidshare and more'
 arch=(i686 x86_64)
 url='http://fatrat.dolezel.info/'
 license=('GPL')
-makedepends=('cmake>=2.6.0')
+makedepends=('cmake>=2.6.0' 'git')
 depends=('qt>=4.4.0' 'rb_libtorrent>=0.13.1' 'curl' 'gloox>=0.9')
 provides=('fatrat')
 conflicts=('fatrat' 'fatrat-svn')
 replaces=('fatrat-svn')
-source=()
-md5sums=()
+source=(fatrat-avoid-depend-on-external-asio.patch)
+md5sums=('8bc71253f3fd769d6a7d902c642ac2ee')
 install=fatrat.install
 
 _gitroot="git://dolezel.info/fatrat.git"
@@ -36,6 +36,8 @@ build() {
   rm -r "$srcdir/$_gitname-build"
   cp -r "$srcdir/$_gitname" "$startdir/src/$_gitname-build"
   cd "$srcdir/$_gitname-build"
+
+  patch -Np1 -i "$srcdir/fatrat-avoid-depend-on-external-asio.patch"
 
   cmake . -DCMAKE_INSTALL_PREFIX='/usr' -DWITH_BITTORRENT=ON -DWITH_CURL=ON -DWITH_NLS=ON -DWITH_JABBER=ON -DWITH_DOCUMENTATION=ON -DWITH_WEBINTERFACE=ON
   make || return 1
