@@ -1,7 +1,7 @@
 # Contributor: Jakub Luzny <limoto94@gmail.com>
 
 pkgname=fatrat-git
-pkgver=20080720
+pkgver=20080724
 pkgrel=1
 pkgdesc='Qt4 (C++) based download manager with support for HTTP, FTP, SFTP, BitTorrent, rapidshare and more'
 arch=(i686 x86_64)
@@ -36,9 +36,6 @@ build() {
   rm -r "$srcdir/$_gitname-build"
   cp -r "$srcdir/$_gitname" "$startdir/src/$_gitname-build"
   cd "$srcdir/$_gitname-build"
-
-  # needed for rb_libtorrent 0.13.1
-  sed -i 's/FIND_LIBRARY(LIBTORRENT_LIBRARY torrent)/FIND_LIBRARY(LIBTORRENT_LIBRARY torrent-rasterbar)/' "cmake_modules/libtorrentConfig.cmake" || return 1
 
   cmake . -DCMAKE_INSTALL_PREFIX='/usr' -DWITH_BITTORRENT=ON -DWITH_CURL=ON -DWITH_NLS=ON -DWITH_JABBER=ON -DWITH_DOCUMENTATION=ON -DWITH_WEBINTERFACE=ON
   make || return 1
