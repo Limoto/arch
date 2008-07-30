@@ -1,0 +1,43 @@
+# Contributor: Jakub Luzny <limoto94@gmail.com>
+pkgname=kdemod-extragear-k3b-svn
+pkgver=838533
+pkgrel=1
+pkgdesc="Feature-rich and easy to handle CD burning application"
+arch=(i686 x86_64)
+url="http://k3b.plainblack.com/"
+license=('GPL')
+groups=()
+depends=('qt>=4.3' 'cdrtools' 'dvd+rw-tools' 'cdrdao' 'cdparanoia' 'libdvdread' 'kdemod-kdelibs' 'kdemod-kdemultimedia-common' 'taglib' 'musicbrainz' 'libogg' 'libvorbis' 'flac' 'libmpcdec' 'libsndfile' 'libmad' 'lame' 'vcdimager' 'ffmpeg' 'sox')
+makedepends=('automoc4' 'cmake' 'subversion')
+provides=('k3b-svn')
+conflicts=('k3b-svn')
+replaces=()
+source=()
+md5sums=()
+
+_svntrunk='svn://anonsvn.kde.org/home/kde/trunk/extragear/multimedia/k3b'
+_svnmod='k3b'
+
+build() {
+  cd "$srcdir"
+
+  if [ -d "$_svnmod/.svn" ]; then
+    (cd "$_svnmod" && svn up -r $pkgver)
+  else
+    svn co "$_svntrunk" --config-dir ./ -r $pkgver "$_svnmod"
+  fi
+
+  msg "SVN checkout done or server timeout"
+  msg "Starting make..."
+
+  rm -r "$srcdir/$_svnmod-build"
+  cp -r "$_svnmod" "$_svnmod-build"
+  cd "$_svnmod-build"
+
+  #
+  # BUILD
+  #
+  cmake -DCMAKE_INSTALL_PREFIX='/usr' -DCMAKE_BUILD_TYPE=RELEASE
+  make || return 1
+  make DESTDIR="$pkgdir" install
+}
