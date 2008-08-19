@@ -34,3 +34,6 @@ build() {
   make || return 1
   make DESTDIR="$pkgdir/" install
 }
+
+#category: lib
+# vim:set ts=2 sw=2 et:
