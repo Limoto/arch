@@ -8,6 +8,8 @@ url="http://sourceforge.net/projects/my-gui/"
 license=('GPL')
 depends=('freetype2' 'ogre' 'ois')
 makedepends=('svn')
+source=()
+md5sums=()
 
 _svntrunk='https://my-gui.svn.sourceforge.net/svnroot/my-gui/trunk'
 _svnmod='mygui'
