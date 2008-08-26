@@ -1,8 +1,8 @@
 # Contributor: Jakub Luzny <limoto94@gmail.com>
 
 pkgname=fatrat-unpack-git
-pkgver=20080711
-pkgrel=2
+pkgver=20080826
+pkgrel=1
 pkgdesc='FatRat plugin for archive unkpacking (only RAR fow now)'
 arch=(i686 x86_64)
 url='http://fatrat.dolezel.info/'
@@ -15,14 +15,14 @@ groups=('fatrat-plugins-git')
 source=()
 md5sums=()
 
-_gitroot="git://dolezel.info/fr_unpack.git"
-_gitname="fr_unpack"
+_gitroot="git://dolezel.info/fatrat-unpack.git"
+_gitname="fatrat-unpack"
 build() {
   cd "$srcdir"
   msg "Connecting to GIT server...."
 
   if [ -d "$srcdir/$_gitname" ] ; then
-    cd $_gitname && git-pull origin
+    cd $_gitname && git pull origin
     msg "The local files are updated."
   else
     git clone $_gitroot
