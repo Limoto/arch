@@ -1,7 +1,7 @@
 # Contributor: Jakub Luzny <limoto94@gmail.com>
 
 pkgname=fatrat-opensubtitles-git
-pkgver=20080630
+pkgver=20080826
 pkgrel=1
 pkgdesc='FatRat plugin for downloading subtitles from OpenSubtitles.com (by movie hash)'
 arch=(i686 x86_64)
@@ -16,14 +16,14 @@ replaces=('fatrat-opensubtitles-svn')
 source=()
 md5sums=()
 
-_gitroot="git://dolezel.info/fr_opensubtitles.git"
-_gitname="fr_opensubtitles"
+_gitroot="git://dolezel.info/fatrat-opensubtitles.git"
+_gitname="fatrat-opensubtitles"
 build() {
   cd "$srcdir"
   msg "Connecting to GIT server...."
 
   if [ -d "$srcdir/$_gitname" ] ; then
-    cd $_gitname && git-pull origin
+    cd $_gitname && git pull origin
     msg "The local files are updated."
   else
     git clone $_gitroot
