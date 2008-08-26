@@ -1,16 +1,16 @@
 # Contributor: Jakub Luzny <limoto94@gmail.com>
 pkgname=zero-ballistics
 pkgver=1.10_beta
-pkgrel=1
+pkgrel=2
 _tarballname=zb_beta_v11
 pkgdesc='A unique blend of multiplayer first person shooter and tank combat game'
 arch=('i686')
-url='http://www.quanticode.com/zeroballistics/'
+url='http://www.zeroballistics.com/'
 license=('unknown')
 depends=('libgl')
-source=("$_tarballname.tar.bz2"
-'http://www.quanticode.com/zeroballistics/public/readme.html'
-'launcher.sh')
+source=($_tarballname.tar.bz2
+http://www.zeroballistics.com/public/readme.html
+launcher.sh)
 md5sums=('9de2881198329677fb66d26d95d689d3'
          'c7c8a8f818e88dd6e838b5b920585a6b'
          'ce4c1ae50295b25bdebf0744b0935df2')
