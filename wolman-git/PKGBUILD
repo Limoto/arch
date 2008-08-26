@@ -1,6 +1,6 @@
 # Contributor: Jakub Luzny <limoto94@gmail.com>
 pkgname=wolman-git
-pkgver=20080803
+pkgver=20080826
 pkgrel=1
 pkgdesc='Qt4-based Wake-on-LAN manager'
 arch=(i686 x86_64)
@@ -22,7 +22,7 @@ build() {
   msg "Connecting to GIT server...."
 
   if [ -d "$srcdir/$_gitname" ] ; then
-    cd "$_gitname" && git-pull origin
+    cd "$_gitname" && git pull origin
     msg "The local files are updated."
   else
     git clone "$_gitroot"

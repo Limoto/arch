@@ -1,7 +1,7 @@
 # Contributor: Jakub Luzny <limoto94@gmail.com>
 
 pkgname=fatrat-git
-pkgver=20080724
+pkgver=20080826
 pkgrel=2
 pkgdesc='Qt4 (C++) based download manager with support for HTTP, FTP, SFTP, BitTorrent, rapidshare and more'
 arch=(i686 x86_64)
@@ -24,7 +24,7 @@ build() {
   msg "Connecting to GIT server...."
 
   if [ -d "$srcdir/$_gitname" ] ; then
-    cd $_gitname && git-pull origin
+    cd $_gitname && git pull origin
     msg "The local files are updated."
   else
     git clone $_gitroot
