@@ -1,0 +1,23 @@
+# Contributor: Jakub Luzny <limoto94@gmail.com>
+pkgname=tuxanci
+pkgver=0.20.0
+pkgrel=1
+pkgdesc="Network/local game with penguins fighting in an arena."
+url="http://www.tuxanci.org/"
+arch=(i686 x86_64)
+license="GPL"
+makedepends=('cmake>=2.4.6')
+depends=('sdl>=1.2.10' 'sdl_image>=1.2.6' 'sdl_ttf>=2.0.7' 'sdl_mixer>=1.2.7')
+source=(http://download.tuxanci.org/$pkgver/$pkgname-$pkgver-src.tar.bz2)
+md5sums=('64379745a132936f642ee974bc10a4ae')
+
+build() {
+  cd "$srcdir/pkgs/$pkgname-$pkgver-src/"
+
+  cmake . -DPREFIX="\\\"/usr/\\\"" -DCMAKE_INSTALL_PREFIX="/usr/"
+  make
+  make DESTDIR="$pkgdir" install 
+}
+
+#category: games
+# vim:set ts=2 sw=2 et:
