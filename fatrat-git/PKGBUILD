@@ -2,7 +2,7 @@
 
 pkgname=fatrat-git
 pkgver=20080910
-pkgrel=2
+pkgrel=1
 pkgdesc='Qt4 (C++) based download manager with support for HTTP, FTP, SFTP, BitTorrent, rapidshare and more'
 arch=(i686 x86_64)
 url='http://fatrat.dolezel.info/'
