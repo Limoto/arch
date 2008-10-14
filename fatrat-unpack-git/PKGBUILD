@@ -3,7 +3,7 @@
 pkgname=fatrat-unpack-git
 pkgver=20081014
 pkgrel=1
-pkgdesc='FatRat plugin for archive unkpacking (only RAR fow now)'
+pkgdesc='FatRat plugin for unpacking of archives (only RAR fow now)'
 arch=(i686 x86_64)
 url='http://fatrat.dolezel.info/'
 license=('GPL')
