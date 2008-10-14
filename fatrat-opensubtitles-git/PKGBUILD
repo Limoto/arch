@@ -1,7 +1,7 @@
 # Contributor: Jakub Luzny <limoto94@gmail.com>
 
 pkgname=fatrat-opensubtitles-git
-pkgver=20080910
+pkgver=20081014
 pkgrel=1
 pkgdesc='FatRat plugin for downloading subtitles from OpenSubtitles.com (by movie hash)'
 arch=(i686 x86_64)
@@ -36,7 +36,7 @@ build() {
   cp -r "$srcdir/$_gitname" "$startdir/src/$_gitname-build"
   cd "$srcdir/$_gitname-build"
 
-  cmake . -DCMAKE_INSTALL_PREFIX='/usr'
+  cmake . -DCMAKE_INSTALL_PREFIX='/usr' -DWITH-NLS=ON
   make || return 1
   make DESTDIR="$pkgdir" install
 }
