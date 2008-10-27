@@ -6,7 +6,7 @@ pkgdesc="Network/local game with penguins fighting in an arena."
 url="http://www.tuxanci.org/"
 arch=(i686 x86_64)
 license="GPL"
-makedepends=('cmake>=2.4.6')
+makedepends=('cmake>=2.6.0')
 depends=('sdl>=1.2.10' 'sdl_image>=1.2.6' 'sdl_ttf>=2.0.7' 'sdl_mixer>=1.2.7' 'zziplib' 'gettext')
 source=(http://download.tuxanci.org/$pkgname-$pkgver.tar.bz2)
 md5sums=('a9012b55bbac7e5f4ce7cd58022334e5')
