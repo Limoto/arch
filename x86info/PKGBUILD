@@ -1,7 +1,7 @@
 # Contributor: Jakub Luzny <limoto94@gmail.com>
 pkgname=x86info
-pkgver=1.21
-pkgrel=2
+pkgver=1.23
+pkgrel=1
 pkgdesc='A CPU identification utility. Provides more info than /proc/cpuinfo.'
 arch=(i686 x86_64)
 url="http://www.codemonkey.org.uk/projects/x86info/"
@@ -10,17 +10,19 @@ install=x86info.install
 depends=()
 makedepends=()
 provides=()
-source=(http://www.codemonkey.org.uk/projects/x86info/x86info-1.21.tgz)
-md5sums=('1fbfaa392170e2636006603659dec0f0')
+source=(http://www.codemonkey.org.uk/projects/${pkgname}/${pkgname}-${pkgver}.tgz)
+md5sums=('2313f797b605fc46419d8fe08e1ff821')
 
 build() {
 	cd "$srcdir/$pkgname-$pkgver"
 
 	sed -ri "s|^CFLAGS = -Wall -W -Wshadow -g -O2|CFLAGS=$CFLAGS|" Makefile
 	make
+	gzip -9 -f ${pkgname}.1
 
 	mkdir -p "$pkgdir/usr/bin/"
 	install -Dm 775 x86info "$pkgdir/usr/bin/"
+	install -Dm 644 ${pkgname}.1.gz "$pkgdir/usr/share/man/man1/${pkgname}.1.gz"
 }
 
 #category: system
