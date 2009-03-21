@@ -1,12 +1,12 @@
 # Contributor: Jakub Luzny <limoto94@gmail.com>
 pkgname=kradio4-svn
-pkgver=565
+pkgver=775
 pkgrel=1
 pkgdesc="KRadio is a comfortable KDE radio application"
 arch=(i686 x86_64)
 url="http://kradio.sourceforge.net"
 license=('GPL')
-depends=('libsndfile' 'kdelibs>=4.2.0' 'lame')
+depends=('libsndfile' 'kdelibs>=4.2.0' 'lame' 'ffmpeg' 'libmms' 'libogg' 'libvorbis')
 makedepends=('svn' 'cmake>=2.6.2')
 source=()
 md5sums=()
