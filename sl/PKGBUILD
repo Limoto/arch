@@ -1,24 +1,27 @@
 # Contributor: Jakub Luzny <limoto94@gmail.com>
 pkgname=sl
 pkgver=3.03
-pkgrel=4
+pkgrel=5
 pkgdesc='SL (Steam Locomotive) runs across your terminal when you type "sl" as you meant to type "ls".'
 arch=(i686 x86_64)
 url="http://www.tkl.iis.u-tokyo.ac.jp/~toyoda/index_e.html"
 license=('unknown')
 depends=('ncurses')
 provides=()
-source=(http://www.tkl.iis.u-tokyo.ac.jp/~toyoda/sl/sl.tar)
-md5sums=('cc06b159f78f86bfd2d4e0e16330fbae')
+source=(http://www.tkl.iis.u-tokyo.ac.jp/~toyoda/sl/sl.tar
+http://www.sodan.ecc.u-tokyo.ac.jp/~okayama/sl/sl.en.1.gz)
+md5sums=('cc06b159f78f86bfd2d4e0e16330fbae'
+         '5cc47d1989d66f2ae3daba5e6c561a75')
 
 build() {
 	cd "$srcdir/sl"
-
+  
 	cc $CFLAGS -o sl sl.c -lcurses
-	gzip -9 -f sl.1
+	iconv -f ISO-2022-JP -t UTF-8 sl.1 > sl.ja.1
 
 	install -Dm 775 sl "$pkgdir/usr/bin/sl"
-	install -Dm 644 sl.1.gz "$pkgdir/usr/share/man/man1/sl.1.gz"
+	install -Dm 644 sl.ja.1 "$pkgdir/usr/share/man/ja/man1/sl.1"
+	install -Dm 644 "$srcdir/sl.en.1" "$pkgdir/usr/share/man/man1/sl.1"
 }
 
 #category: games
