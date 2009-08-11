@@ -1,6 +1,6 @@
 # Contributor: Jakub Luzny <limoto94@gmail.com>
 pkgname=wuninst-git
-pkgver=20080826
+pkgver=20090811
 pkgrel=1
 pkgdesc="Advanced uninstaller for Wine"
 arch=(i686 x86_64)
@@ -11,8 +11,9 @@ depends=('wine')
 provides=('wuninst')
 conflicts=('wuninst' 'wuninst-svn')
 replaces=('wuninst-svn')
-source=()
-md5sums=()
+source=('registry_stdio.patch' 'wuninst_stdio.patch')
+md5sums=('141d130d28db41d29054786cc8472848'
+         'b6b02a2fb95ca74ba0b06802e6086bc9')
 
 _gitroot="git://dolezel.info/wuninst.git"
 _gitname="wuninst"
@@ -34,6 +35,8 @@ build() {
   rm -r "$srcdir/$_gitname-build"
   cp -r "$srcdir/$_gitname" "$srcdir/$_gitname-build"
   cd "$srcdir/$_gitname-build"
+  patch -p0 < ../registry_stdio.patch || return 1
+  patch -p0 < ../wuninst_stdio.patch || return 1
 
   make
   install -Dm 755 wuninst.exe.so "$pkgdir/usr/lib/wine/wuninst.exe.so"
@@ -41,3 +44,4 @@ build() {
 
 #category: emulators
 # vim:set ts=2 sw=2 et:
+

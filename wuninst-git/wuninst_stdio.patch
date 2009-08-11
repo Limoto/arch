@@ -1,0 +1,10 @@
+--- wuninst.cpp	2009-08-11 15:15:39.000000000 +0300
++++ ../../wuninst.cpp	2009-08-11 15:09:30.000000000 +0300
+@@ -3,6 +3,7 @@
+ #include <algorithm>
+ #include "registry.h"
+ #include <iostream>
++#include <stdio.h>
+ 
+ HWND g_wndMain;
+ HIMAGELIST g_hImageList = 0;

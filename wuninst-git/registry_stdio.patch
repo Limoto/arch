@@ -1,0 +1,10 @@
+--- registry.cpp	2009-08-11 15:15:39.000000000 +0300
++++ ../../registry.cpp	2009-08-11 15:09:49.000000000 +0300
+@@ -1,6 +1,7 @@
+ #include "registry.h"
+ #include <windows.h>
+ #include <tchar.h>
++#include <stdio.h>
+ 
+ const TCHAR* getRegValue(HKEY key, const TCHAR* value, int maxsize = BUFSIZE);
+ 
