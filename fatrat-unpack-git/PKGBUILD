@@ -1,14 +1,13 @@
 # Contributor: Jakub Luzny <limoto94@gmail.com>
 
 pkgname=fatrat-unpack-git
-pkgver=20081014
+pkgver=20091025
 pkgrel=1
-pkgdesc='FatRat plugin for unpacking of archives (only RAR fow now)'
-arch=(i686 x86_64)
+pkgdesc='FatRat plugin for unpacking of archives (RAR and ZIP)'
 url='http://fatrat.dolezel.info/'
 license=('GPL')
 makedepends=('cmake>=2.4.0' 'git')
-depends=('fatrat>=1.1')
+depends=('fatrat>=1.1' 'libzip')
 provides=('fatrat-unpack')
 conflicts=('fatrat-unpack')
 groups=('fatrat-plugins-git')
@@ -35,7 +34,7 @@ build() {
   cp -r "$srcdir/$_gitname" "$startdir/src/$_gitname-build"
   cd "$srcdir/$_gitname-build"
 
-  cmake . -DCMAKE_INSTALL_PREFIX='/usr' -DWITH-NLS=ON
+  cmake . -DCMAKE_INSTALL_PREFIX='/usr' -DWITH-NLS=ON -DWITH_ZIP=ON
   make || return 1
   make DESTDIR="$pkgdir" install
 }
