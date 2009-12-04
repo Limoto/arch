@@ -1,6 +1,6 @@
 # Contributor: Jakub Luzny <limoto94@gmail.com>
 pkgname=x86info
-pkgver=1.24
+pkgver=1.25
 pkgrel=1
 pkgdesc='A CPU identification utility. Provides more info than /proc/cpuinfo.'
 arch=(i686 x86_64)
@@ -11,7 +11,7 @@ depends=()
 makedepends=()
 provides=()
 source=(http://www.codemonkey.org.uk/projects/${pkgname}/${pkgname}-${pkgver}.tgz)
-md5sums=('f4476fb55918cf3b20312f858af44334')
+md5sums=('29143559c611272ec2045361a6ffd813')
 
 build() {
 	cd "$srcdir/$pkgname-$pkgver"
