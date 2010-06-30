@@ -1,9 +1,10 @@
 # Contributor: Jakub Luzny <limoto94@gmail.com>
 
 pkgname=fatrat-unpack-git
-pkgver=20091025
+pkgver=20100630
 pkgrel=1
 pkgdesc='FatRat plugin for unpacking of archives (RAR and ZIP)'
+arch=(i686 x86_64)
 url='http://fatrat.dolezel.info/'
 license=('GPL')
 makedepends=('cmake>=2.4.0' 'git')
@@ -11,8 +12,6 @@ depends=('fatrat>=1.1' 'libzip')
 provides=('fatrat-unpack')
 conflicts=('fatrat-unpack')
 groups=('fatrat-plugins-git')
-source=()
-md5sums=()
 
 _gitroot="git://dolezel.info/fatrat-unpack.git"
 _gitname="fatrat-unpack"
@@ -30,12 +29,12 @@ build() {
   msg "GIT checkout done or server timeout"
   msg "Starting make..."
 
-  rm -r "$srcdir/$_gitname-build"
-  cp -r "$srcdir/$_gitname" "$startdir/src/$_gitname-build"
+  rm -rf "$srcdir/$_gitname-build"
+  cp -r "$srcdir/$_gitname" "$srcdir/$_gitname-build"
   cd "$srcdir/$_gitname-build"
 
   cmake . -DCMAKE_INSTALL_PREFIX='/usr' -DWITH-NLS=ON -DWITH_ZIP=ON
-  make || return 1
+  make
   make DESTDIR="$pkgdir" install
 }
 
