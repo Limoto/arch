@@ -10,7 +10,7 @@ license=('GPL')
 makedepends=('cmake>=2.6.0' 'git')
 depends=('qt>=4.4.0' 'libtorrent-rasterbar>=0.14.5' 'curl' 'gloox>=0.9')
 optdepends=('geoip: Displaying country of IP address')
-provides=('fatrat=1.1.1')
+provides=('fatrat=1.1.2')
 conflicts=('fatrat')
 
 _gitroot="git://dolezel.info/fatrat.git"
