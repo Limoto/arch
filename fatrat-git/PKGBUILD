@@ -8,7 +8,7 @@ arch=(i686 x86_64)
 url='http://fatrat.dolezel.info/'
 license=('GPL')
 makedepends=('cmake>=2.6.0' 'git')
-depends=('qt>=4.4.0' 'libtorrent-rasterbar>=0.14' 'curl' 'gloox>=0.9')
+depends=('qt>=4.4.0' 'libtorrent-rasterbar>=0.14.5' 'curl' 'gloox>=0.9')
 optdepends=('geoip: Displaying country of IP address')
 provides=('fatrat=1.1.1')
 conflicts=('fatrat')
@@ -35,8 +35,9 @@ build() {
   cp -r "$srcdir/$_gitname" "$srcdir/$_gitname-build"
   cd "$srcdir/$_gitname-build"
 
-  cmake . -DCMAKE_INSTALL_PREFIX='/usr' -DWITH_BITTORRENT=ON -DWITH_CURL=ON -DWITH_NLS=ON -DWITH_JABBER=ON -DWITH_DOCUMENTATION=ON -DWITH_WEBINTERFACE=ON
-  make || return 1
+  cmake . -DCMAKE_INSTALL_PREFIX='/usr' -DWITH_BITTORRENT=ON -DWITH_CURL=ON -DWITH_NLS=ON \
+          -DWITH_JABBER=ON -DWITH_DOCUMENTATION=ON -DWITH_WEBINTERFACE=ON
+  make
   make DESTDIR="$pkgdir" install 
 
 }
