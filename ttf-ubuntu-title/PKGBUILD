@@ -1,11 +1,11 @@
 # Contributor: Jakub Luzny <limoto94@gmail.com>
 pkgname=ttf-ubuntu-title
 pkgver=0706252006
-pkgrel=2
+pkgrel=3
 pkgdesc="Fonts used in Ubuntu logo"
 arch=(i686 x86_64)
 url="https://wiki.ubuntu.com/UbuntuTitle"
-license=('GPL')
+license=('LGPL')
 depends=('fontconfig' 'xorg-fonts-encodings' 'xorg-font-utils')
 install=ttf.install
 source=(http://nitrofurano.linuxkafe.com/linux/UbuntuTitle_0706252006.zip)
