@@ -1,19 +1,21 @@
 # Contributor: Jakub Luzny <limoto94@gmail.com>
 pkgname=zero-ballistics
 pkgver=2.0
-pkgrel=6
+pkgrel=7
 _pgname=zb_20
 pkgdesc='A unique blend of multiplayer first person shooter and tank combat game'
 arch=('i686' 'x86_64')
 url='http://www.zeroballistics.com/'
 license=('GPL')
 depends=('libgl' 'libjpeg6' 'openscenegraph-2.8' 'raknet-3.261' 'cegui-0.5')
-source=(http://www.zeroballistics.com/public/readme.html
+source=(http://downloads.sourceforge.net/project/zeroballistics/models/blender_models.zip
+http://www.zeroballistics.com/public/readme.html
 launcher.sh
 launcher-ded.sh
 zero-ballistics.desktop
 boost.patch)
-md5sums=('d9490617a757ad6c3253d995ba84be57'
+md5sums=('85ceb55c221468d2ce5a1d50cc98fd0a'
+         'd9490617a757ad6c3253d995ba84be57'
          '3c3be3b2599c2b5b9ae7b68d8bd48234'
          '24fcd633a625eee14bc84934be6ac5b3'
          '95c9a541679510597a737b63cbd72c4f'
@@ -58,6 +60,9 @@ package() {
   "$pkgdir/opt/$pkgname"
 
   cp -r "$srcdir/$pkgname-build/data" "$pkgdir/opt/$pkgname"
+
+  #models
+  cp -r "$srcdir/data" "$pkgdir/opt/$pkgname"
 
   #game crashes when connecting without write rights
   find "$pkgdir/opt/$pkgname/data/" -type f -exec chmod 666 {} \;
